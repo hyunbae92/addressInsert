@@ -10,7 +10,7 @@ public class Connector {
 
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521/xe";
 	private static final String USER = "TEST";
-	private static final String PASSWORD = "TEST";
+	private static final String PASSWORD = "test";
 	private static final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
 	private static Connection conn = null;
 	private static PreparedStatement ps = null;
@@ -23,7 +23,7 @@ public class Connector {
 		}
 	}
 
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		try {
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 			conn.setAutoCommit(false);
@@ -35,7 +35,7 @@ public class Connector {
 		return null;
 	}
 
-	public void close(Connection conn) {
+	public static void close(Connection conn) {
 		if (conn != null) {
 			try {
 				conn.close();
@@ -44,7 +44,7 @@ public class Connector {
 			}
 		}
 	}
-	public void close(PreparedStatement ps) {
+	public static void close(PreparedStatement ps) {
 		if (ps != null) {
 			try {
 				ps.close();
@@ -53,7 +53,7 @@ public class Connector {
 			}
 		}
 	}
-	public void close(ResultSet rs) {
+	public static void close(ResultSet rs) {
 		if (rs != null) {
 			try {
 				rs.close();
@@ -63,12 +63,12 @@ public class Connector {
 		}
 	}
 
-	public void close(Connection conn, PreparedStatement ps) {
+	public static void close(Connection conn, PreparedStatement ps) {
 		close(conn);
 		close(ps);
 	}
 
-	public void close(Connection conn, PreparedStatement ps, ResultSet rs) {
+	public static void close(Connection conn, PreparedStatement ps, ResultSet rs) {
 		close(conn);
 		close(ps);
 		close(rs);
